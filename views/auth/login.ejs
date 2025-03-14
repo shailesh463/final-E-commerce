@@ -1,0 +1,33 @@
+
+<% layout('layouts/boilerplates') %>
+<!-- layout use kr rhe he hm layouts folder ke data ko lene ke liye  
+ layout use kr rhe he hm layouts folder ke data ko lene ke liye  -->
+
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+        <h1>LOGIN</h1>
+        <form action="/login" method="POST">
+
+            <div>
+            <label class="form-label" for="username">username:</label>
+            <input class="form-control" type="text" name="username" id="username" placeholder="enter username"> 
+            <!-- name="username " hi rakhna hmesa kyoki passport local mongoose ke saath attach he suno passport local automatic user nAME STORE KRTA HE   -->
+        <!--  kyko hmne schema me usrename password define nhi kiye he kyoki woh automatic store ho jaate in mongo by help of local passport -->
+            </div>
+             <!-- <div class="mt-3">
+                <label class="form-label" for="email">email:</label>
+                <input class="form-control" type="text" name="email" id="email" placeholder="write email" required>
+            </div>  -->
+            <div class="mt-3">
+                <label class="form-label" for="password">password:</label>
+                <input class="form-control" type="password" name="password" id="password" placeholder="password" required>
+                <!-- <input type="password" name="password" required> -->
+
+            </div>
+            <!-- <div class="mt-3"> -->
+                <button type="submit" class="btn btn-sm btn-success">login</button>
+            <!-- </div> -->
+          <p> dont have account <a href="/register">signup</a></p>
+        </form>
+    </div>
+  </div>

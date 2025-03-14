@@ -1,0 +1,53 @@
+
+<% layout('layouts/boilerplates') %>
+<!-- layout use kr rhe he hm layouts folder ke data ko lene ke liye  
+ layout use kr rhe he hm layouts folder ke data ko lene ke liye  -->
+
+<%-include('../partials/navbar') %>
+<!-- include use kr rhe he hm partials folder ke data ko lene ke liye  -->
+
+
+
+
+<h1 class="display-6">MYCART</h1>
+<div class="row">
+<div class="col-lg-8">
+<% for(let k of user.cart) { %>
+    <div class="col-lg-4 mt-3">
+        <div class="card shadow mx-auto" style="width: 18rem;">
+            <img src="<%=k.img %>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= k.name %></h5>
+                <h4 class="card-title"><%= k.price %></h4>
+                <p class="card-text"><%= k.desc %></p>
+            </div> <!-- Closing card-body -->
+        </div> <!-- Closing card -->
+    </div> <!-- Closing col-lg-4 -->
+<% } %>
+</div>
+<div class="col-lg-4">
+<ul class="List-group">
+    <% for(let k of user.cart) { %>
+        <li class="List-group-item"><span class="fw-bold"><%=k.name%> -</span><%=k.price%></li>
+<%}%>
+<li class="List-group-item">TOTAL AMOUNT :<%=totalAmount%></li>
+
+    </ul>
+
+
+<form action="/payment_gateway/payumoney" method="post">
+    <input  type="hidden" name="amount" value="<%=totalAmount%>"/>
+    <!-- <input  type="hidden" name="phone" value="+9199999999" /> -->
+    <input type="hidden" name="service_provider" 
+     value="payu_paisa"/>
+    <!-- <input type="hidden" class="product" name="productinfo"  -->
+<!-- value="<%=productInfo%>"/> -->
+     
+     <button type="submit" class="btn btn-sm btn-success my-3">checkout</button>
+    </form>
+</div>
+</div>
+</section>
+
+<!-- </body>
+    </html> -->

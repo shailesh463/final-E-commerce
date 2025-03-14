@@ -1,0 +1,36 @@
+<% layout('layouts/boilerplates.ejs')%>
+<%-include('../partials/navbar.ejs')%>
+<div class="row">
+
+    <div class="col-3 mx-auto">
+
+        <form action="/products/<%=findproduct._id%>?_method=PATCH" method="POST">
+
+            <div class="mb-3">
+                <label for="naam">name:</label>
+                <input type="text"  name="name" id="naam" value="<%=findproduct.name%>">
+
+            </div>
+            <div class="mb-3">
+                <label for="img">img:</label>
+                <input type="text"  name="img"id="img" value="<%=findproduct.img%>">
+            </div>
+            <div class="mb-3">
+                <label for="price">price:</label>
+                <input type="text"  name="price"id="price"value="<%=findproduct.price%>">
+
+            </div>
+            <div class="mb-3">
+                <label for="desc">desc:</label>
+                <textarea name="desc" id="desc" rows="5" value="<%=findproduct.desc%>">desc:</textarea>
+                </div>
+
+                <button class="btn btn-sm btn-success" type="submit">ADD:</button>
+        </form>
+
+    </div>
+</div>
+
+
+</body>
+</html>

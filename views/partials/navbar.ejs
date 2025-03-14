@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <!-- <a class="navbar-brand" href="#">Hidden brand</a> -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/commerse">Home</a>
+          </li>
+          <!--  sirf seller hi add kr pay product only  -->
+            <%if(currentUser && currentUser.role=='seller') {%>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/commerse/new">ADD NEW PRODUCT</a>
+          </li>
+          <%  }%>
+        
+        </ul>
+      
+
+         <% if(!currentUser){ %>   
+          <!-- yeh condition lgai he kyoki hme chahiye jb user sighuop kre to use logout option dikhe jb woh ina sighnup ke jaay to usse sirf login option dikhe  -->
+          <div class="d-flex">
+        <a href="/login" class="nav-link mx-2" >login</a>
+        &nbsp;
+         <% }   else { %>
+          <div  class ="mx-2">
+       <a href="#" class="nav-link">hello,<%=currentUser.username%></a>
+      </div>
+      <a href="/user/cart" class="nav-link mx-2">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <sup><span class="badge bg-danger"><%=currentUser.cart.length%></span></sup>
+      </a>
+          <a href="/logout" class="nav-link mx-2">logout</a>
+          <%}%>
+        
+        </div>
+      </div>
+    </div>
+  </nav>

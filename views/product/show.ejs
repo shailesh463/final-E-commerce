@@ -1,0 +1,95 @@
+
+<% layout('layouts/boilerplates') %>
+<!-- layout use kr rhe he hm layouts folder ke data ko lene ke liye  
+ layout use kr rhe he hm layouts folder ke data ko lene ke liye  -->
+
+<%- include('../partials/navbar') %>
+<!-- include use kr rhe he hm partials folder ke data ko lene ke liye  -->
+
+
+
+
+
+
+<div class="row">
+<div class="col-lg-6 mt-3">
+<div class="card shadow mx-auto" style="width: 18rem;">
+<img src="<%=findproduct.img%>" class="card-img-top" alt="...">
+<div class="card-body">
+<h5 class="card-title"><%= findproduct.name%></</h5>
+<h4 class="card-title"><%=findproduct.price%></h4>
+<p class="card-text"><%=findproduct.desc%></p>
+<form action="/user/<%=findproduct._id%>/add" method="POST">
+  <button class="btn btn-primary">ADD TO CAR</button>
+</form>
+
+<%if(currentUser && currentUser.role=='seller') {%>
+<a href="/products/<%=findproduct._id%>/edit" class="btn btn-sm btn-success">edit a card</a>
+<%}%>
+<!-- <a href="/products/<%=findproduct._id%>/delete" class="btn btn-sm btn-danger">delete a card</a>
+  -->
+
+ <!-- //ye view button he jo product ke id ke sath link hoga -->
+  <!-- jb hm view pr clck krenge to uss card ki id hit hogi product:id pr jese hi hit hogi wese hi hm get method ke andar req.parse se id le lenge and moongose method find by id se uss card ka data obj ki form me nikal lenge and uss object ko render kra denge product/show pr end uss object ko bhej denge  -->
+</div>
+</div>
+</div>
+
+
+<%if(currentUser && currentUser.role!='seller') {%>
+  <div class="col-lg-4">
+  <h1 class="display-5">LEAVE A REVIEW</h1>
+  <form action="/product/<%=findproduct._id%>/review" method="POST">
+  <div mb-3>
+    <fieldset class="starability-basic">
+      <legend>First rating:</legend>
+      <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+      <input type="radio" id="first-rate1" name="rating" value="1" />
+      <label for="first-rate1" title="Terrible">1 star</label>
+      <input type="radio" id="first-rate2" name="rating" value="2" />
+      <label for="first-rate2" title="Not good">2 stars</label>
+      <input type="radio" id="first-rate3" name="rating" value="3" />
+      <label for="first-rate3" title="Average">3 stars</label>
+      <input type="radio" id="first-rate4" name="rating" value="4" />
+      <label for="first-rate4" title="Very good">4 stars</label>
+      <input type="radio" id="first-rate5" name="rating" value="5" />
+      <label for="first-rate5" title="Amazing">5 stars</label>
+    </fieldset>
+  </div>
+  <div mb-3>
+<label for="comment">comment:</label>
+  <textarea name="comment" row="3" id="comment"></textarea>
+    </div>
+    <!-- <div mb-3> -->
+      <button class="btn btn-sm btn-success" type="submit">submit</button>
+    <!-- </div> -->
+    </form>
+ 
+
+<div class="my-3">
+<!-- hmko saare rating dikhani he to lop lgao -->
+<% for(let k of findproduct.review){ %>
+  <div class="card" class="mt-3">
+    <div class="card-header" class="mt-3">
+      Rating
+    </div>
+    <div class="mt-3" class="card-body">
+      <!-- <h5 class="card-title"><%=k.rating%></h5> -->
+      <!-- <h3>Rated element name</h3> -->
+      <p class="starability-result" data-rating="<%=k.rating%>">
+        <%=k.rating%>
+      </p>
+      <p class="card-text">comment:<%=k.comment%></p>
+      <a href="#" class="btn btn-primary">DELETE</a>
+    </div>
+  </div>
+<% } %>
+</div>
+</div>
+</div>
+<%}%>
+
+
+
+    </body>
+    </html>
