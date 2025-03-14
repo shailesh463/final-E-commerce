@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My E-Commerce</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Arial", sans-serif;
+        }
+        body {
+            background: linear-gradient(to right, #ff7eb3, #ff758c, #ff7eb3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3rem;
+            animation: fadeIn 2s ease-in-out;
+        }
+        p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            animation: slideUp 2s ease-in-out;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: #fff;
+            color: #ff758c;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.4s;
+            animation: bounce 2s infinite alternate;
+        }
+        .button:hover {
+            background: #ff516b;
+            color: white;
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+    </style>
+    <script>
+        // Auto Redirect to /commerse after 5 seconds
+        setTimeout(() => {
+            window.location.href = "/commerse";
+        }, 5000);
+
+        // Redirect function for button
+        function goToCommerse() {
+            window.location.href = "/commerse";
+        }
+    </script>
+</head>
+<body>
+    <h1>🚀 Welcome to My E-Commerce Website!</h1>
+    <p>You will be redirected shortly...</p>
+    <button class="button" > <a href="/commerse">Go to Store 🛍️</a></button>
+</body>
+</html>

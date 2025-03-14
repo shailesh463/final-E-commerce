@@ -14,6 +14,10 @@ const User=require('../models/auth')
 // ydi tum data base ke method ke saath kaam kr rhe ho js file me to woh return krte he promise and promise ko resolve krne ke liye async await ka use krte he
 // or ydi tum data base ke method ke saath kaam nhi kr rhe ho to woh direct data return krte he
 // jo bhi function resolve ya reject hone ke liye time lgata he wha hm await use kr lete he pr hm wha then ya catch bhi use kr skte he await se abh jb tk woh resolve nhi hota tb tk next line execute nhi hogi
+
+ route.get('/',(req,res)=>{
+    res.render('product/welcome.ejs')
+ })
 route.get('/commerse',isauthenticate,async(req,res)=>{
     let products= await Product.find({})
     res.render('product/index.ejs',{products});
