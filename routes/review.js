@@ -1,7 +1,7 @@
 const express=require('express');
 const { Query } = require('mongoose');
 const Product=require('../models/Project')
-const Review = require('../models/review');
+const Review = require('../models/Review');
 const route=express.Router();
 const{validatereview}=require('../middleware');
 
