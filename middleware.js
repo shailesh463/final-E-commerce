@@ -2,8 +2,8 @@ const Product=require('./models/Project')
 const{productschema,reviewschema}=require('./joi');
 // server side validation ke liye middleware bna rhe he validate ke 
 const validateproduct=(req,res,next)=>{
-    const{name,img,price,desc}=req.body;
-    const{error}=productschema.validate({name,img,price,desc}); // jis ko hme validate krna he  
+    const{name,img,price,desc}=req.body;  // isss middleware jb hm kisi get ya [post request pr lga re honge tb wha se req.body aa jyaega na
+    const{error}=productschema.validate({name:name,img,price,desc}); // jis ko hme validate krna he  woh as a object jata he hme name price img desc ko validate krna he validate is a method to validate in joi 
     if(error){
        return res.render('product/error',{err:error.message});
     }   
@@ -27,6 +27,7 @@ const validatereview=(req,res,next)=>{
 // yeh bs ek middleware he jo yeh check kr rha he ki bs bnda authenticated he ya nhi 
 const isauthenticate=(req,res,next)=>{
 if(!req.isAuthenticated()){   //isAuthenticatedis a method to check user logged in or not and give output in boolena
+  req.flash('error','Your session has been expired') // yeh method flash message ko show krne ke liye use hota he
 return res.redirect('/login');
 }
 next();
@@ -57,3 +58,7 @@ next();
 }
 
 module.exports={isproductauthor,validateproduct,validatereview,isauthenticate,isseller};
+
+
+
+///

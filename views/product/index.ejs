@@ -7,6 +7,18 @@
 <!-- include use kr rhe he hm partials folder ke data ko lene ke liye  -->
 
 
+<div id="google_translate_element"></div>
+
+<h1>Welcome to our website</h1>
+<p>This is a demo of multilingual translation.</p>
+
+<!-- <script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+  }
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+ -->
 
 
 
@@ -19,7 +31,8 @@
         <h1><%=k.desc%></h1>
   <%  }%>
      -->
-  <% for(let k of products){ %>
+  <!-- ejs tags  -->
+  <% for(let k of products){ %> 
     <div class="col-lg-4 mt-3">
   <div class="card shadow mx-auto" style="width: 18rem;">
     <img src="<%=k.img%>" class="card-img-top" alt="...">

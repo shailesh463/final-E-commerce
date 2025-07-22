@@ -11,6 +11,10 @@ let schema=new mongoose.Schema({
     type:String,
     trim:true
  }
+},
+{
+   timestamps:true // yeh hme date dega ki kab bna
+   // yeh hme date dega ki kab bna
 });
 
 let Review=mongoose.model('Review',schema);

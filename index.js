@@ -127,7 +127,7 @@ const { date } = require('joi');
 const seedDB = require('./seed');
 const cartroute=require('./routes/cart')
 
-const dbURL=process.env.dbURL   ||  'mongodb://127.0.0.1:27017/shopping'
+const dbURL= 'mongodb://127.0.0.1:27017/shopping'
 // ydi dburl (process.env.dbURL)  me mongo ki url mil jay to thik nhi phir mongho ki url use kro
 // ✅ Connect to MongoDB
 mongoose.set('strictQuery',true);
@@ -157,8 +157,8 @@ app.use(expressSession({
     cookie:{
         //secure:true  // use when you use https
         httpOnly:true,  // use when you work on http  httponly is akey
-        expires: Date.now() + 1*24*60*60*1000,       // expire me hm btate he kiu hmara session kb expire hoga thike bhai 
-        maxAge:1*24*60*60*1000                 // we find currenrt date by help of date.now();
+        expires: Date.now() + 1*60*1000,       // expire me hm btate he kiu hmara session kb expire hoga thike bhai 
+        maxAge:1*60*1000                 // we find currenrt date by help of date.now();
     }
 
 }));
@@ -169,6 +169,13 @@ app.use(passport.session());
 
 // ✅ Configure Passport for Authentication
 passport.use(new LocalStrategy(User.authenticate()));
+// 🔸 function(username, password, done) { ... }
+// This function runs when a user tries to log in.
+
+// username and password come from the login form.
+
+// done() is a callback you must call to say what happened
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -177,8 +184,8 @@ app.use(connectFlash());
 
 // ✅ Middleware to Pass `currentUser` to All Views
 app.use((req, res, next) => {
-    res.locals.currentUser = req.user || null;
-    next();
+    res.locals.currentUser = req.user || null;  // abh hm user ki detaiols khi bhi access kr payenge 
+    next(); 
 });
 
 // ✅ Use Routes
@@ -189,4 +196,4 @@ app.use(cartroute);
 app.use(paymentRoutes);
 
 // ✅ Start Server
-app.listen(8000, () => console.log("Server running on port 8000"));
+app.listen(3000, () => console.log("Server running on port 3000"));

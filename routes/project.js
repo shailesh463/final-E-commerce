@@ -8,7 +8,8 @@ const{validateproduct,isauthenticate,isseller,isproductauthor}=require('../middl
 
 const Product=require('../models/Project'); // hmne require kiya he kyokihme db ka data chhaiye uss data ko hme render krana he to bhejna to pdega to model me data pda he to hmko pehle data lene pdega model se
 // hmne model me data save kiya he to hme model ka use krna pdega
-const User=require('../models/auth')
+const User=require('../models/auth');
+const Review = require('../models/Review'); // hmne require kiya he kyokihme db ka data chhaiye uss data ko hme render krana he to bhejna to pdega to model me data pda he to hmko pehle data lene pdega model se
 
 // imp 
 // ydi tum data base ke method ke saath kaam kr rhe ho js file me to woh return krte he promise and promise ko resolve krne ke liye async await ka use krte he
@@ -29,7 +30,7 @@ route.get('/commerse',isauthenticate,async(req,res)=>{
 
 route.get('/commerse/new',isauthenticate,(req,res)=>{
     try{
-    res.render('product/new.ejs')
+    res.render('product/new.ejs',{error:req.flash('error')})
     }
     catch(e){
         res.status(500).render('product/error.ejs',{err:e.message})// message is one of method in a 'e'
@@ -58,6 +59,7 @@ route.get('/product/:id',isauthenticate,async(req,res)=>{
     let{id}=req.params;
    let findproduct= await Product.findById(id).populate('review');//populate ki help  se abh dono collection connect ho gye hm populate objid ki help se kr rhe he obj id review ke and he na 
    // to hmne populate ki help se review collection se data lekr aa liya he abh hm uss data ko findproduct ki help se le payenge  
+//    product
    res.render('product/show',{findproduct});
 
 
@@ -99,21 +101,19 @@ res.redirect(`/product/${id}`);
 route.delete('/products/:id/delete',isauthenticate,isproductauthor,async(req,res)=>{
 try{    
 let{id}=req.params;
-
 const product=await Product.findById(id);
+// hm chahte he  ki product ke saath saath product ke review bhi delete kr do 
 
-// for(let id of product.review){
-//     await Review.findByIdAndDelete(id);
-// }
+ for(let id of product.review){  
+    await Review.findByIdAndDelete(id);   // REVIEW is a collection name
+}
+
 await Product.findByIdAndDelete(id);  // yeh jo he pre ko call kr rha he and id bhej rha he usi ko hm product maan rhe he 
 res.redirect('/commerse');
-
-
 }
 catch(e){
     res.status(500).render('product/error',{err:e.message})// message is one of method in a 'e'
     // abh route fatega nhi blki error kiya he woh dikhega message ki form me abh server baar baar start krne ki problem nhi he 
-
 }
 })
 

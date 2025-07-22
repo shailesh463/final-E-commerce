@@ -25,7 +25,6 @@ const passportLocalMongoose = require('passport-local-mongoose');
 Userschema.plugin(passportLocalMongoose);  // plugin lgega schema pr 
 
 
-
 const User= mongoose.model('Authentication',Userschema);
 
 module.exports=User;

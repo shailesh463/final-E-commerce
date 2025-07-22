@@ -12,9 +12,11 @@ route.post('/product/:id/review',async(req,res)=>{   // validate hoga tabhi asyn
     let{rating,comment}=req.body;
     let product=await Product.findById(id);
     let reviews= await Review.create({rating,comment});
-    product.review.push(reviews); // jis product me dalna he use to choose kr lo pehle by help of id
+    product.review.push(reviews._id); // jis product me dalna he use to choose kr lo pehle by help of id
     await product.save();
     res.redirect(`/product/${id}`);
+
+    // jo hmne 
 //  }
 
 // catch(e){
