@@ -18,11 +18,11 @@ pipeline {
             }
         }
 
-        stage('build') {
-            steps {
-                bat 'npm run build'
-            }
-        }
+        // stage('build') {
+        //     steps {
+        //         bat 'npm run build'
+        //     }
+        // }
 
         stage('deploy') {
             steps {
