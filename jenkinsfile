@@ -1,0 +1,28 @@
+pipeline{
+    agent any
+ environment {
+         VERCEL_TOKEN=credentials('vercel_token')   
+ }   
+ stages{
+    stage('install_dependencies'){
+        steps{
+            bat 'npm'
+        }
+    }
+    stage('tese'){
+        steps{
+            echo "skipping test stage"
+        }
+    }
+    stage('build'){
+        steps{
+            bat 'npm run build'
+        }
+    }
+    stage('deploy'){
+        steps{
+            bat 'npm vercel --prod --yes --token=% VERCEL_TOKEN%'
+        }
+    }
+ }
+}
