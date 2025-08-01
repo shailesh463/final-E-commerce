@@ -14,7 +14,7 @@ pipeline {
 
         stage('test') {
             steps {
-                echo "Skipping test stage... some changes made"
+                echo "Skipping test stage... some changes jhmade"
             }
         }
 
