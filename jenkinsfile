@@ -11,7 +11,7 @@ pipeline{
     }
     stage('tese'){
         steps{
-            echo "skipping test stagesssss some change "
+            echo "skipping test stagesssss some changeshhg"
         }
     }
     stage('build'){
