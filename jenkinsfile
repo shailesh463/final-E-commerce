@@ -6,7 +6,7 @@ pipeline{
  stages{
     stage('install_dependencies'){
         steps{
-            bat 'npm'
+            bat 'npm install'
         }
     }
     stage('tese'){
