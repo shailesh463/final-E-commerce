@@ -21,7 +21,7 @@ pipeline{
     }
     stage('deploy'){
         steps{
-            bat 'npm vercel --prod --yes --token=% VERCEL_TOKEN%'
+            bat 'npm vercel --prod --yes --token=%VERCEL_TOKEN%'
         }
     }
  }
